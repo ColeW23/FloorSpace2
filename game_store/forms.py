@@ -14,7 +14,7 @@ class RegistrationForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    building_number = SelectField('Building Number', choices=[("", " "), (1, '1'), (2, '2')], validators=[validate_building])
+    building_number = SelectField('Building Number', choices=[("", " "), (1, '1'), (2, '2')], validators=[validate_building, DataRequired()])
     room_number = IntegerField('Room Number', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
