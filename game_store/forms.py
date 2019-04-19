@@ -13,8 +13,6 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    building_number = SelectField('Building Number', choices=[("", " "), ('1', '1'), ('1', '2')], validators=[validate_building, DataRequired()])
-    room_number = IntegerField('Room Number', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
@@ -27,6 +25,12 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('That email is already taken. Please choose a different one.')
 
 
+class TicketSubmit(FlaskForm):
+    building_number = SelectField('Building Number', choices=[("", " "), ('1', '1'), ('1', '2')],
+                                  validators=[validate_building, DataRequired()])
+    room_number = IntegerField('Room Number', validators=[DataRequired()])
+
+    submit = SubmitField("SubmitTicket")
 
 
 class LoginForm(FlaskForm):
