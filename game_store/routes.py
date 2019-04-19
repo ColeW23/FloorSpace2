@@ -26,7 +26,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = Tenant(roomn_number=form.room_number, build_number=form.building_number, username=form.username.data, email=form.email.data, password=hashed_password)
+        user = Tenant(room_number=form.room_number.data, build_number=int(form.building_number.data), username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
