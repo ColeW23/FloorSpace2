@@ -1,6 +1,6 @@
 from sqlalchemy import CheckConstraint, UniqueConstraint
 
-from game_store import db, login_manager
+from game_store import db, login_manager, bcrypt
 from flask_login import UserMixin
 import datetime
 
@@ -35,24 +35,24 @@ class Tenant(db.Model, UserMixin):
 
 class Admin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(20), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
 
+    def __init__(self, email, name, password):
+        self.email  = email
+        self.name = name
+        self.password = password
 
 db.drop_all()
 db.create_all()
-Tenants = [
-    # Game(game_name="Assassin's Creed", genre="action-adventure", release_date=datetime.date(2007, 11, 13), price=10.00,
-    #      publisher_id=1),
 
-]
+# Admin login
+hashed_password = bcrypt.generate_password_hash('Test').decode('utf-8')
+Admin1 = Admin(email="Admin1@gmail.com", name="Admin", password=hashed_password)
 
-# db.session.bulk_save_objects(games)
-# db.session.commit()
-
-# Admins
-
-
-# db.session.bulk_save_objects(publishers)
-# db.session.commit()
+db.session.add(Admin1)
+db.session.commit()
 
 # Tickets
 
