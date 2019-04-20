@@ -45,14 +45,19 @@ class Ticket(db.Model):
     room_id = db.Column(db.Integer, nullable=False)
     build_id = db.Column(db.Integer, nullable=False)
     mtype = db.Column(db.String(40), nullable=False)
+    submitdate = db.Column(db.Date, nullable=False)
+    resolvedate = db.Column(db.Date)
     description = db.Column(db.String(720), nullable=False)
 
-    def __init__(self, email, room_id, build_id, mtype, description):
+    def __init__(self, email, room_id, build_id, mtype, description, submitdate, resolvedate):
         self.tenant_email=email
         self.room_id=room_id
         self.build_id=build_id
         self.mtype=mtype
         self.description=description
+        self.submitdate=submitdate
+        self.resolvedate=resolvedate
+
 
 
 db.drop_all()
@@ -65,10 +70,19 @@ Admin1 = Tenant(email="Admin1@gmail.com", username="Admin1", password=hashed_pas
 db.session.add(Admin1)
 db.session.commit()
 
-# Tickets
+# Tenant login
+TestTenant = Tenant('cole', 'williamson.cole23@gmail.com', 'cunt', access=1)
 
-# db.session.bulk_save_objects(platforms)
-# db.session.commit()
+db.session.add(TestTenant)
+db.session.commit()
+
+# Tickets
+Ticket1 = Ticket('williamson.cole23@gmail.com', room_id=406, build_id=1, mtype='repair', description='my fucking toilet broke', submitdate=datetime.date(2018, 4, 20), resolvedate=datetime.date(2000, 1, 10))
+
+db.session.add(Ticket1)
+db.session.commit()
+
+
 
 
 

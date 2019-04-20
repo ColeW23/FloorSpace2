@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request
 
 from game_store import app, db, bcrypt
 from game_store.forms import RegistrationForm, LoginForm
-from game_store.models import Tenant
+from game_store.models import Tenant, Ticket
 from flask_login import login_user, current_user, logout_user, login_required
 import datetime
 
@@ -65,3 +65,9 @@ def logout():
 @login_required
 def account():
     return render_template('account.html', title='Account')
+
+
+@app.route("/tickets")
+def tickets():
+    ticketdata = Ticket.query.all()
+    return render_template('tickets.html', ticketdata=ticketdata)
