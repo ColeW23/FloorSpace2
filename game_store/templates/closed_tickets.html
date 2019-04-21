@@ -9,9 +9,9 @@
             <thead>
                 <tr>
                     {% if current_user and current_user.is_admin()  %}
-                        <th colspan="8" style="text-align: center; width: 100%;">Floor Space Current Open Tickets</th>
+                        <th colspan="8" style="text-align: center; width: 100%;">Floor Space Current Closed Tickets</th>
                     {% else %}
-                        <th colspan="7" style="text-align: center; width: 100%;">Current Tenant Tickets</th>
+                        <th colspan="8" style="text-align: center; width: 100%;">Current Tenant Closed Tickets</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
                             Submit Date
                         </td>
                         <td id="tbl-sbhd">
-                            Close Ticket
+                            Resolve Date
                         </td>
                     </tr>
                 {% else %}
@@ -66,11 +66,14 @@
                         <td id="tbl-sbhd">
                             Submit Date
                         </td>
+                        <td id="tbl-sbhd">
+                            Resolve Date
+                        </td>
                     </tr>
                 {% endif %}
 
                 {% for Ticket in ticketdata %}
-                    {% if current_user and current_user.is_admin() and Ticket.resolvedate == None %}
+                    {% if current_user and current_user.is_admin() and Ticket.resolvedate != None %}
                         <tr>
                             <td>
                                 {{ Ticket.id }}
@@ -94,11 +97,11 @@
                                 {{ Ticket.submitdate }}
                             </td>
                             <td>
-                                <a href="{{ url_for('admin_submit', ticket_id=Ticket.id) }}">Resolve This Ticket</a>
+                                {{ Ticket.resolvedate }}
                             </td>
                         </tr>
                     {% else %}
-                        {% if current_user.email == Ticket.tenant_email and Ticket.resolvedate == None %}
+                        {% if current_user.email == Ticket.tenant_email and Ticket.resolvedate != None %}
                             <tr>
                                 <td>
                                 {{ Ticket.id }}
@@ -120,6 +123,9 @@
                                 </td>
                                 <td>
                                     {{ Ticket.submitdate }}
+                                </td>
+                                <td>
+                                {{ Ticket.resolvedate }}
                                 </td>
                             </tr>
                         {% endif %}

@@ -1,22 +1,21 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% block content %}
-    <div class="content-section">
+<div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Game Purchase</legend>
-                <small class="text-muted">Please enter a quantity.</small>
+                <legend class="border-bottom mb-4">Ticket Submit: {{ ticket.id }}</legend>
                 <div class="form-group">
-                    {{ form.quantity.label(class="form-control-label") }}
-                    {% if form.quantity.errors %}
-                        {{ form.quantity(class="form-control form-control-lg is-invalid") }}
+                    {{ form.description.label(class="form-control-label") }}
+                    {% if form.description.errors %}
+                        {{ form.description(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in form.quantity.errors %}
+                            {% for error in form.description.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.quantity(class="form-control form-control-lg") }}
+                        {{ form.description(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
             </fieldset>

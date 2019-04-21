@@ -1,7 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>{{ current_user.name }}</h1>
-        <a href="{{ url_for('tickets') }}">View Tickets</a>
+        {% if current_user and current_user.is_admin() %}
+            <a href="{{ url_for('tickets') }}">View All Open Tickets</a><br>
+            <a href="{{ url_for('closed_tickets') }}">View All Resolved Tickets</a><br>
+        {% elif current_user and not current_user.is_admin() %}
+            <a href="{{ url_for('tickets') }}">View Your Open Tickets</a><br>
+            <a href="{{ url_for('closed_tickets') }}">View Your Past Tickets</a><br>
+        {% endif %}
+
+        {% if current_user and not current_user.is_admin() %}
+            <a href="{{ url_for('ticket_submit') }}">Submit a Maintenance Ticket</a>
+        {% endif %}
         </div>
         <div class="col-md-4">
           <div class="content-section">

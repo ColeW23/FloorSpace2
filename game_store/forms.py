@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from game_store.models import Tenant
 
@@ -7,6 +7,11 @@ from game_store.models import Tenant
 def validate_building(self, field):
     if field.data == "":
         raise ValidationError("Invalid building number!")
+
+
+def validate_mainttype(self, field):
+    if field.data == "":
+        raise ValidationError("Invalid Maintenance type!")
 
 
 class RegistrationForm(FlaskForm):
@@ -29,7 +34,9 @@ class TicketSubmit(FlaskForm):
     building_number = SelectField('Building Number', choices=[("", " "), ('1', '1'), ('1', '2')],
                                   validators=[validate_building, DataRequired()])
     room_number = IntegerField('Room Number', validators=[DataRequired()])
-
+    choices=[("", " "), ("Repair", "Repair"), ("Plumbing", "Plumbing"), ("Electrical", "Electrical"), ("Other", "Other")]
+    maint_type = SelectField("Maintenance Type", choices=choices, validators=[validate_mainttype, DataRequired()])
+    description = TextAreaField("Maintenance Description", validators=[DataRequired()])
     submit = SubmitField("SubmitTicket")
 
 
@@ -44,3 +51,14 @@ class LoginForm(FlaskForm):
 class BuyForm(FlaskForm):
     quantity = IntegerField('Quantity', validators=[DataRequired()])
     submit = SubmitField('Buy')
+
+
+class TicketSearchForm(FlaskForm):
+    choices = [('id', "ID"), ('Email', 'Email')]
+    select = SelectField('Search for ticket:', choices=choices)
+    search = StringField('')
+
+
+class AdminTickSubmit(FlaskForm):
+    description = TextAreaField("Closing Response", validators=[DataRequired()])
+    submit = SubmitField("Resolve Ticket")

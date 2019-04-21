@@ -71,13 +71,14 @@ db.session.add(Admin1)
 db.session.commit()
 
 # Tenant login
-TestTenant = Tenant('cole', 'williamson.cole23@gmail.com', 'cunt', access=1)
+hashed_password = bcrypt.generate_password_hash("cunt").decode('utf-8')
+TestTenant = Tenant('cole', 'williamson.cole23@gmail.com', password=hashed_password, access=1)
 
 db.session.add(TestTenant)
 db.session.commit()
 
 # Tickets
-Ticket1 = Ticket('williamson.cole23@gmail.com', room_id=406, build_id=1, mtype='repair', description='my fucking toilet broke', submitdate=datetime.date(2018, 4, 20), resolvedate=datetime.date(2000, 1, 10))
+Ticket1 = Ticket('williamson.cole23@gmail.com', room_id=406, build_id=1, mtype='repair', description='my fucking toilet broke', submitdate=datetime.date(2018, 4, 20), resolvedate=None)
 
 db.session.add(Ticket1)
 db.session.commit()
