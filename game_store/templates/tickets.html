@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table.css') }}">
+<h1>Maintenance Tickets</h1>
+</div>
+<div id="div-container">
+    <div id="div-table">
+        <table class="teal-table" style="width:100%;">
+            <thead>
+                <tr>
+                    {% if current_user and current_user.is_admin()  %}
+                        <th colspan="8" style="text-align: center; width: 100%;">Floor Space Current Open Tickets</th>
+                    {% else %}
+                        <th colspan="7" style="text-align: center; width: 100%;">Current Tenant Tickets</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% if current_user and current_user.is_admin() %}
+                    <tr>
+                        <td id="tbl-sbhd">
+                            Ticket ID
+                        </td>
+                        <td id="tbl-sbhd">
+                            Email
+                        </td>
+                        <td id="tbl-sbhd">
+                            Room Number
+                        </td>
+                        <td id="tbl-sbhd">
+                            Building Number
+                        </td>
+                        <td id="tbl-sbhd">
+                            Maintenance Type
+                        </td>
+                        <td id="tbl-sbhd">
+                            Maintenance Description
+                        </td>
+                        <td id="tbl-sbhd">
+                            Submit Date
+                        </td>
+                        <td id="tbl-sbhd">
+                            Close Ticket
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td id="tbl-sbhd">
+                            Ticket ID
+                        </td>
+                        <td id="tbl-sbhd">
+                            Email
+                        </td>
+                        <td id="tbl-sbhd">
+                            Room Number
+                        </td>
+                        <td id="tbl-sbhd">
+                            Building Number
+                        </td>
+                        <td id="tbl-sbhd">
+                            Maintenance Type
+                        </td>
+                        <td id="tbl-sbhd">
+                            Maintenance Description
+                        </td>
+                        <td id="tbl-sbhd">
+                            Submit Date
+                        </td>
+                    </tr>
+                {% endif %}
+
+                {% for Ticket in ticketdata %}
+                    {% if current_user and current_user.is_admin() and Ticket.resolvedate == None %}
+                        <tr>
+                            <td>
+                                {{ Ticket.id }}
+                            </td>
+                            <td>
+                                {{ Ticket.tenant_email }}
+                            </td>
+                            <td>
+                                {{ Ticket.room_id }}
+                            </td>
+                            <td>
+                                {{ Ticket.build_id }}
+                            </td>
+                            <td>
+                                {{ Ticket.mtype }}
+                            </td>
+                            <td>
+                                {{ Ticket.description }}
+                            </td>
+                            <td>
+                                {{ Ticket.submitdate }}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('admin_submit', ticket_id=Ticket.id) }}">Resolve This Ticket</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        {% if current_user.email == Ticket.tenant_email and Ticket.resolvedate == None %}
+                            <tr>
+                                <td>
+                                {{ Ticket.id }}
+                                </td>
+                                <td>
+                                    {{ Ticket.tenant_email }}
+                                </td>
+                                <td>
+                                    {{ Ticket.room_id }}
+                                </td>
+                                <td>
+                                    {{ Ticket.build_id }}
+                                </td>
+                                <td>
+                                    {{ Ticket.mtype }}
+                                </td>
+                                <td>
+                                    {{ Ticket.description }}
+                                </td>
+                                <td>
+                                    {{ Ticket.submitdate }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="clear"></div>
+</div>
+
+
+{% endblock content %}

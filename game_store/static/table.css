@@ -1,0 +1,44 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Use this document to style a table with shades of teal.
+
+Apply the .teal-table class to the <table> tag.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ================================
+  Table Styles
+=================================== */
+
+/* Make border color teal. */
+table.teal-table,
+.teal-table th,
+.teal-table td {
+  border-color: #26757d;
+  padding: 20px;
+}
+
+/* Make table header color teal with white text. */
+table.teal-table > thead,
+table.teal-table > thead > tr,
+table.teal-table > thead > tr > th {
+  background-color: #26757d;
+  color: #fff;
+}
+
+/* Make table subhead light teal with bold font. Apply this class to a <tr> tag, create a single <td> within it, apply colspan="[# of columns]" to the <td> tag, and type your subhead title in the <td>. */
+#tbl-sbhd {
+  background-color: #ddedee;
+  font-weight: bold;
+  padding: 7px;
+}
+
+/* Create more space between list items in table. */
+.teal-table td > ul > li {
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.teal-table tbody > tr > td {
+  padding: 5px;
+  text-align: center;
+  verticle-align: bottom;
+}
