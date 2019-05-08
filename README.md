@@ -1,6 +1,4 @@
-# flask game store
+# FloorSpace Developer Environment Setup
 
-1. clone repository
-2. install needed libraries (flask, flask-login, flask-Bcrypt, flask-sqlalchemy, etc.)
-3. run run.py
-4. open the localhost listing
+1. Clone Repository
+2. Open Installation_Guide PDF and follow setup instructions
