@@ -100,7 +100,6 @@ def ticket_submit():
         db.session.commit()
         flash("Ticket was submitted successfully!", 'success')
         return redirect(url_for('tickets'))
-
     return render_template('ticket_submit.html', form=form)
 
 
