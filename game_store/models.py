@@ -5,17 +5,21 @@ from flask_login import UserMixin
 import datetime
 
 
+# Loads the current user
 @login_manager.user_loader
 def load_user(user_id):
     return Tenant.query.get(int(user_id))
 
 
+# Defines the access permission levels
 ACCESS = {
     'guest': 0,
     'tenant': 1,
     'admin': 2
 }
 
+
+# The tenant class associated with the tenant table in the database. This handles the tenant's information.
 class Tenant(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), unique=True, nullable=False)
@@ -39,6 +43,7 @@ class Tenant(db.Model, UserMixin):
         return f"Customer('{self.name}', '{self.email}')"
 
 
+# The Ticket class associated with the ticket table in the database. This handles ticket information.
 class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tenant_email = db.Column(db.String(120), db.ForeignKey("tenant.email"))
@@ -59,8 +64,10 @@ class Ticket(db.Model):
         self.resolvedate=resolvedate
 
 
-
+# Drops all tables on initialization
 db.drop_all()
+
+#Creates all tables
 db.create_all()
 
 # Admin login
