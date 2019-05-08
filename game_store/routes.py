@@ -7,17 +7,24 @@ from flask_login import login_user, current_user, logout_user, login_required
 import datetime
 
 
+# Renders the home.html template
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html')
 
 
+# Renders the about.html template
 @app.route("/about")
 def about():
     return render_template('about.html', title='About')
 
 
+# Register route
+# Loads the Registration Form
+# Checks if current user is authenticated
+# Checks the validity of all fields on submit. If valid, adds user information to the database.
+# Redirects to login after successful registration
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -33,6 +40,12 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
+# Login route
+# Loads the Login Form
+# If the fields are valid, checks if password matches, and redirects to next.
+# If the user is an admin, redirects to employee template
+# Otherwise, redirects to account template.
+# If invalid, flashes an unsuccessful message.
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -50,29 +63,37 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+# Renders template employee.html
 @app.route("/employee")
 def employee():
     return render_template('employee.html', title="Welcome")
 
 
+# Logs the user our and renders home.html template
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
 
+# Renders template for account.html. Login in required.
 @app.route("/account")
 @login_required
 def account():
     return render_template('account.html', title='Account')
 
 
+# Gets all tickets and renders tickets.html
 @app.route("/tickets")
 def tickets():
     ticketdata = Ticket.query.all()
     return render_template('tickets.html', ticketdata=ticketdata)
 
 
+# Ticket submission route
+# Loads Ticket Form
+# If form data is valid, add the ticket to the session and commit.
+# Redirect to account.html template
 @app.route("/ticket_submit", methods=['GET', 'POST'])
 def ticket_submit():
     form = TicketSubmit()
@@ -86,6 +107,11 @@ def ticket_submit():
     return render_template('ticket_submit.html', form=form)
 
 
+# Admin ticket submission route.
+# Ticket ID is passed in the route
+# Loads Admin Ticket Submit Form
+# If the form dat ais valid, update the description and resolve date, then add and commit.
+# Redirect for account.html
 @app.route("/admin_submit/<ticket_id>", methods=['GET', 'POST'])
 def admin_submit(ticket_id):
     form = AdminTickSubmit()
@@ -101,6 +127,7 @@ def admin_submit(ticket_id):
     return render_template('admin_submit.html', form=form, ticket=the_ticket)
 
 
+# Passes tickets and renders closed_tickets.html template
 @app.route("/closed_tickets")
 def closed_tickets():
     ticketdata = Ticket.query.all()
