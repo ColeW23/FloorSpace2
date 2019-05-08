@@ -58,6 +58,7 @@ def login():
                 flash("Employee Login Successful!", 'success')
                 return redirect(next_page) if next_page else redirect(url_for('account'))
             else:
+                flash("Tenant Login Successful!", 'success')
                 return redirect(next_page) if next_page else redirect(url_for('account'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
@@ -98,7 +99,7 @@ def ticket_submit():
         db.session.add(tick)
         db.session.commit()
         flash("Ticket was submitted successfully!", 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('tickets'))
 
     return render_template('ticket_submit.html', form=form)
 
@@ -117,8 +118,7 @@ def admin_submit(ticket_id):
         the_ticket.resolvedate = datetime.date.today()
         db.session.commit()
         flash("Ticket was resolved successfully", 'success')
-        return redirect(url_for('account'))
-
+        return redirect(url_for('tickets'))
     return render_template('admin_submit.html', form=form, ticket=the_ticket)
 
 
