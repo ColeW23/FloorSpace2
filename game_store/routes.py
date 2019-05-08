@@ -55,18 +55,13 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             if user.is_admin():
-                return redirect(url_for('employee'))
+                flash("Employee Login Successful!", 'success')
+                return redirect(next_page) if next_page else redirect(url_for('account'))
             else:
                 return redirect(next_page) if next_page else redirect(url_for('account'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
-
-
-# Renders template employee.html
-@app.route("/employee")
-def employee():
-    return render_template('employee.html', title="Welcome")
 
 
 # Logs the user our and renders home.html template
@@ -115,7 +110,6 @@ def ticket_submit():
 @app.route("/admin_submit/<ticket_id>", methods=['GET', 'POST'])
 def admin_submit(ticket_id):
     form = AdminTickSubmit()
-    flash("Ticket id = "+ticket_id, 'warning')
     the_ticket = Ticket.query.filter_by(id=ticket_id).first()
     if form.validate_on_submit():
         the_ticket.description = form.description.data
