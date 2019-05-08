@@ -1,4 +1,4 @@
-#!C:\Users\cew7856\Documents\Github\game_store\venv\Scripts\python.exe
+#!C:\Users\cew7856\Documents\GitHub\FloorSpace2\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==19.0.3','console_scripts','pip3.7'
 __requires__ = 'pip==19.0.3'
 import re
