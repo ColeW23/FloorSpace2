@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d06317ff-83bf-49b3-9a34-3984fbc17c4e" name="Default Changelist" comment="">
+    <list default="true" id="d06317ff-83bf-49b3-9a34-3984fbc17c4e" name="Default Changelist" comment="Update 5/8&#10;Change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_store/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_store/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_store/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_store/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_store/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_store/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_store/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_store/site.db" beforeDir="false" afterPath="$PROJECT_DIR$/game_store/site.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +43,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game_store/templates/about.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -101,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game_store/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+            <state relative-caret-position="408">
+              <caret line="87" column="111" selection-start-line="87" selection-start-column="111" selection-end-line="87" selection-end-column="111" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -125,6 +120,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="cgrountree &lt;cgrountree@gmail.com&gt;" />
         <option value="cgrountree" />
         <option value="ColeW23 &lt;williamson.cole23@gmail.com&gt;" />
         <option value="ColeW23" />
@@ -152,9 +148,9 @@
         <option value="$PROJECT_DIR$/game_store/templates/home.html" />
         <option value="$PROJECT_DIR$/game_store/forms.py" />
         <option value="$PROJECT_DIR$/game_store/__init__.py" />
-        <option value="$PROJECT_DIR$/game_store/models.py" />
         <option value="$PROJECT_DIR$/game_store/routes.py" />
         <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/game_store/models.py" />
       </list>
     </option>
   </component>
@@ -312,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556048480902</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update 5/8&#10;Add comments to __init__, forms, models, routes, and run files">
+      <created>1557345666238</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1557345666238</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -349,7 +352,8 @@
     <MESSAGE value="Final update for 4/19. Added Admin permissions, removed the Admin entity, made room ID and building ID part of the maintenance entity." />
     <MESSAGE value="Update 4/20 &#10;- Created page for displaying all tickets&#10;- Tickets are displayed based on varying factors:&#10;-- Admin users have all currently opened tickets displayed&#10;-- Tenants have only their open tickets displayed&#10;- Added css styles to the table that displays tickets" />
     <MESSAGE value="update 4/23&#10;add an about to the about page" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 4/23&#10;add an about to the about page" />
+    <MESSAGE value="Update 5/8&#10;Add comments to __init__, forms, models, routes, and run files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 5/8&#10;Add comments to __init__, forms, models, routes, and run files" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/py.gitignore">
@@ -528,16 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game_store/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game_store/routes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
@@ -557,6 +551,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game_store/templates/about.html">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_store/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="87" column="111" selection-start-line="87" selection-start-column="111" selection-end-line="87" selection-end-column="111" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
