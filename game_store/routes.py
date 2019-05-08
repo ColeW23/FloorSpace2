@@ -9,7 +9,7 @@ import datetime
 
 # Renders the home.html template
 @app.route("/")
-@app.route("/home")
+@app.route('/home')
 def home():
     return render_template('home.html')
 
@@ -68,6 +68,7 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
+    flash("Logout Successful", 'danger')
     return redirect(url_for('home'))
 
 
